@@ -1,31 +1,27 @@
-<%= form_for(@order) do |f| %>
-  <% if @order.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
-
-      <ul>
-      <% @order.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for @order, :html => { class: 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :title, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :title, class: 'text_field input-xlarge' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :description, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :description, class: 'text_area input-xlarge', rows: '5' %>
+    </div>
+  </div>
+  <% if can? :complete, Order %>
+    <div class="control-group">
+      <%= f.label :completion, class: 'control-label' %>
+      <div class="controls">
+        <%= f.check_box :completion, class: 'check_box' %>
+      </div>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
-  <% if can? :complete, @order %>
-    <div class="field">
-      <%= f.label :completion %><br />
-      <%= f.check_box :completion %>
-    </div>
-  <% end %>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-actions">
+    <%= f.submit nil, class: 'btn btn-primary' %>
+    <%= link_to 'Cancel', orders_path, class: 'btn' %>
   </div>
 <% end %>

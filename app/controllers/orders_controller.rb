@@ -8,10 +8,6 @@ class OrdersController < ApplicationController
     @orders = @orders.uncompleted if params[:list] == 'uncompleted'
   end
 
-  def show
-#    @order = Order.find(params[:id])
-  end
-
   def new
 #    @order = Order.new
   end
@@ -25,7 +21,7 @@ class OrdersController < ApplicationController
 
     @order.user_id = current_user.id
     if @order.save
-      redirect_to @order, notice: 'Order was successfully created.'
+      redirect_to orders_url, notice: 'Order was successfully created.'
     else
       render action: "new"
     end
@@ -35,7 +31,7 @@ class OrdersController < ApplicationController
 #    @order = Order.find(params[:id])
 
     if @order.update_attributes(params[:order])
-      redirect_to @order, notice: 'Order was successfully updated.'
+      redirect_to orders_url, notice: 'Order was successfully updated.'
     else
       p params[:order]
       render action: "edit"

@@ -20,4 +20,8 @@ class User < ActiveRecord::Base
   def default_values
     self.role ||= 'user'
   end
+
+  def self.accessible_roles
+    %w(user admin)
+  end
 end

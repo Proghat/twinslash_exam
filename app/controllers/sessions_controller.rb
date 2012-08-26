@@ -6,8 +6,7 @@ class SessionsController < ApplicationController
     user = User.find_by_email(params[:session][:email])
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
-      redirect_to root_url, notice: 'Signed in.'
-      puts user.id
+      redirect_to root_path, notice: 'Signed in.'
     else
       flash[:error] = 'Unknown pair email/password'
       redirect_to :new
@@ -16,6 +15,6 @@ class SessionsController < ApplicationController
 
   def destroy
     reset_session
-    redirect_to root_url, notice: 'Signed out.'
+    redirect_to signin_url, notice: 'Signed out.'
   end
 end
