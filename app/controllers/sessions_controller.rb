@@ -6,9 +6,11 @@ class SessionsController < ApplicationController
     user = User.find_by_email(params[:session][:email])
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
+      redirect_to root_url, notice: 'Signed in.'
+      puts user.id
     else
       flash[:error] = 'Unknown pair email/password'
-      render :new
+      redirect_to :new
     end
   end
 

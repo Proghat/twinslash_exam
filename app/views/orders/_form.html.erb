@@ -19,6 +19,12 @@
     <%= f.label :description %><br />
     <%= f.text_area :description %>
   </div>
+  <% if can? :complete, @order %>
+    <div class="field">
+      <%= f.label :completion %><br />
+      <%= f.check_box :completion %>
+    </div>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

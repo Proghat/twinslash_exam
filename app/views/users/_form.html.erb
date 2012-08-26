@@ -20,9 +20,19 @@
     <%= f.text_field :email %>
   </div>
   <div class="field">
-    <%= f.label :role %><br />
-    <%= f.text_field :role %>
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
   </div>
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <% if can? :change_role, @user %>
+    <div class="field">
+      <%= f.label :role %><br />
+      <%= f.text_field :role %>
+    </div>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>
