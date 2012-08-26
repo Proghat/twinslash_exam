@@ -1,6 +1,17 @@
 <div class="page-header">
   <h1>Orders</h1>
 </div>
+  <ul class="nav nav-pills">
+    <li class="<%= 'active' if params[:list].blank? %>">
+      <%= link_to 'All', orders_path %>
+    </li>
+    <li class="<%= 'active' if params[:list] == 'completed' %>">
+      <a href="?list=completed">Completed</a>
+    </li>
+    <li class="<%= 'active' if params[:list] == 'uncompleted' %>">
+      <a href="?list=uncompleted">Uncompleted</a>
+    </li>
+  </ul>
 <dl class="dl-horizontal">
   <% @orders.each do |order| %>
     <p>
