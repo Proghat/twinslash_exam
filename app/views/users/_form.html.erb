@@ -23,15 +23,16 @@
       <%= f.password_field :password_confirmation, class: 'password_field' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :role, class: 'control-label' %>
-    <div class="controls">
-      <%= f.select :role, User.accessible_roles %>
+  <% if can? :change_role, @user %>
+    <div class="control-group">
+      <%= f.label :role, class: 'control-label' %>
+      <div class="controls">
+        <%= f.select :role, User.accessible_roles %>
+      </div>
     </div>
-  </div>
+  <% end %>
 
   <div class="form-actions">
     <%= f.submit nil, class: 'btn btn-primary' %>
-    <%= link_to 'Cancel', users_path, class: 'btn' %>
   </div>
 <% end %>
