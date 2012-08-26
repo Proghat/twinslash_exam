@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  before_save :default_values
+  before_validation :default_values
 
   attr_accessible :name
   attr_accessible :email

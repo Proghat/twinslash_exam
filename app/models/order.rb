@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
-  before_save :default_values
+  before_validation :default_values
 
   attr_accessible :title, :description
   attr_accessible :completion # yes, it's accessible, but cancan care about permissions
